@@ -1,0 +1,434 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище Wallpaper_FacroryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="material_types">
+          <Key>
+            <PropertyRef Name="material_type_id" />
+          </Key>
+          <Property Name="material_type_id" Type="int" Nullable="false" />
+          <Property Name="material_type_name" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="percentage_of_fail" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="materials">
+          <Key>
+            <PropertyRef Name="material_id" />
+          </Key>
+          <Property Name="material_id" Type="int" Nullable="false" />
+          <Property Name="material_name" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="material_type_id" Type="int" Nullable="false" />
+          <Property Name="price" Type="float" Nullable="false" />
+          <Property Name="amount" Type="int" Nullable="false" />
+          <Property Name="min_amount" Type="int" Nullable="false" />
+          <Property Name="amount_per_package" Type="int" Nullable="false" />
+          <Property Name="measurment_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="measurments">
+          <Key>
+            <PropertyRef Name="measurment_id" />
+          </Key>
+          <Property Name="measurment_id" Type="int" Nullable="false" />
+          <Property Name="measurment_name" Type="varchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="product_materials">
+          <Key>
+            <PropertyRef Name="product_material_id" />
+          </Key>
+          <Property Name="product_material_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="material_id" Type="int" Nullable="false" />
+          <Property Name="amount_of_material" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="product_types">
+          <Key>
+            <PropertyRef Name="product_type_id" />
+          </Key>
+          <Property Name="product_type_id" Type="int" Nullable="false" />
+          <Property Name="product_type_name" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="coeff_of_type" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_type_id" Type="int" Nullable="false" />
+          <Property Name="name_of_product" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="article" Type="int" Nullable="false" />
+          <Property Name="min_price" Type="float" Nullable="false" />
+          <Property Name="wide" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_materials_material_types">
+          <End Role="material_types" Type="Self.material_types" Multiplicity="1" />
+          <End Role="materials" Type="Self.materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="material_types">
+              <PropertyRef Name="material_type_id" />
+            </Principal>
+            <Dependent Role="materials">
+              <PropertyRef Name="material_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_materials_measurments">
+          <End Role="measurments" Type="Self.measurments" Multiplicity="1" />
+          <End Role="materials" Type="Self.materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="measurments">
+              <PropertyRef Name="measurment_id" />
+            </Principal>
+            <Dependent Role="materials">
+              <PropertyRef Name="measurment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_materials_materials">
+          <End Role="materials" Type="Self.materials" Multiplicity="1" />
+          <End Role="product_materials" Type="Self.product_materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="materials">
+              <PropertyRef Name="material_id" />
+            </Principal>
+            <Dependent Role="product_materials">
+              <PropertyRef Name="material_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_materials_products">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="product_materials" Type="Self.product_materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="product_materials">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_products_product_types">
+          <End Role="product_types" Type="Self.product_types" Multiplicity="1" />
+          <End Role="products" Type="Self.products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product_types">
+              <PropertyRef Name="product_type_id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="product_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Wallpaper_FacroryModelContainer">
+          <EntitySet Name="material_types" EntityType="Self.material_types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="materials" EntityType="Self.materials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="measurments" EntityType="Self.measurments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product_materials" EntityType="Self.product_materials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product_types" EntityType="Self.product_types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_materials_material_types" Association="Self.FK_materials_material_types">
+            <End Role="material_types" EntitySet="material_types" />
+            <End Role="materials" EntitySet="materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_materials_measurments" Association="Self.FK_materials_measurments">
+            <End Role="measurments" EntitySet="measurments" />
+            <End Role="materials" EntitySet="materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_materials_materials" Association="Self.FK_product_materials_materials">
+            <End Role="materials" EntitySet="materials" />
+            <End Role="product_materials" EntitySet="product_materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_materials_products" Association="Self.FK_product_materials_products">
+            <End Role="products" EntitySet="products" />
+            <End Role="product_materials" EntitySet="product_materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_products_product_types" Association="Self.FK_products_product_types">
+            <End Role="product_types" EntitySet="product_types" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Wallpaper_FacroryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="material_types">
+          <Key>
+            <PropertyRef Name="material_type_id" />
+          </Key>
+          <Property Name="material_type_id" Type="Int32" Nullable="false" />
+          <Property Name="material_type_name" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="percentage_of_fail" Type="Double" Nullable="false" />
+          <NavigationProperty Name="materials" Relationship="Self.FK_materials_material_types" FromRole="material_types" ToRole="materials" />
+        </EntityType>
+        <EntityType Name="materials">
+          <Key>
+            <PropertyRef Name="material_id" />
+          </Key>
+          <Property Name="material_id" Type="Int32" Nullable="false" />
+          <Property Name="material_name" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="material_type_id" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Double" Nullable="false" />
+          <Property Name="amount" Type="Int32" Nullable="false" />
+          <Property Name="min_amount" Type="Int32" Nullable="false" />
+          <Property Name="amount_per_package" Type="Int32" Nullable="false" />
+          <Property Name="measurment_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="material_types" Relationship="Self.FK_materials_material_types" FromRole="materials" ToRole="material_types" />
+          <NavigationProperty Name="measurments" Relationship="Self.FK_materials_measurments" FromRole="materials" ToRole="measurments" />
+          <NavigationProperty Name="product_materials" Relationship="Self.FK_product_materials_materials" FromRole="materials" ToRole="product_materials" />
+        </EntityType>
+        <EntityType Name="measurments">
+          <Key>
+            <PropertyRef Name="measurment_id" />
+          </Key>
+          <Property Name="measurment_id" Type="Int32" Nullable="false" />
+          <Property Name="measurment_name" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="materials" Relationship="Self.FK_materials_measurments" FromRole="measurments" ToRole="materials" />
+        </EntityType>
+        <EntityType Name="product_materials">
+          <Key>
+            <PropertyRef Name="product_material_id" />
+          </Key>
+          <Property Name="product_material_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="material_id" Type="Int32" Nullable="false" />
+          <Property Name="amount_of_material" Type="Double" Nullable="false" />
+          <NavigationProperty Name="materials" Relationship="Self.FK_product_materials_materials" FromRole="product_materials" ToRole="materials" />
+          <NavigationProperty Name="products" Relationship="Self.FK_product_materials_products" FromRole="product_materials" ToRole="products" />
+        </EntityType>
+        <EntityType Name="product_types">
+          <Key>
+            <PropertyRef Name="product_type_id" />
+          </Key>
+          <Property Name="product_type_id" Type="Int32" Nullable="false" />
+          <Property Name="product_type_name" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="coeff_of_type" Type="Double" Nullable="false" />
+          <NavigationProperty Name="products" Relationship="Self.FK_products_product_types" FromRole="product_types" ToRole="products" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="product_type_id" Type="Int32" Nullable="false" />
+          <Property Name="name_of_product" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="article" Type="Int32" Nullable="false" />
+          <Property Name="min_price" Type="Double" Nullable="false" />
+          <Property Name="wide" Type="Double" Nullable="false" />
+          <NavigationProperty Name="product_materials" Relationship="Self.FK_product_materials_products" FromRole="products" ToRole="product_materials" />
+          <NavigationProperty Name="product_types" Relationship="Self.FK_products_product_types" FromRole="products" ToRole="product_types" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_materials_material_types">
+          <End Role="material_types" Type="Self.material_types" Multiplicity="1" />
+          <End Role="materials" Type="Self.materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="material_types">
+              <PropertyRef Name="material_type_id" />
+            </Principal>
+            <Dependent Role="materials">
+              <PropertyRef Name="material_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_materials_measurments">
+          <End Role="measurments" Type="Self.measurments" Multiplicity="1" />
+          <End Role="materials" Type="Self.materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="measurments">
+              <PropertyRef Name="measurment_id" />
+            </Principal>
+            <Dependent Role="materials">
+              <PropertyRef Name="measurment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_materials_materials">
+          <End Role="materials" Type="Self.materials" Multiplicity="1" />
+          <End Role="product_materials" Type="Self.product_materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="materials">
+              <PropertyRef Name="material_id" />
+            </Principal>
+            <Dependent Role="product_materials">
+              <PropertyRef Name="material_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_materials_products">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="product_materials" Type="Self.product_materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="product_materials">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_products_product_types">
+          <End Role="product_types" Type="Self.product_types" Multiplicity="1" />
+          <End Role="products" Type="Self.products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product_types">
+              <PropertyRef Name="product_type_id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="product_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Wallpaper_FacroryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="material_types" EntityType="Self.material_types" />
+          <EntitySet Name="materials" EntityType="Self.materials" />
+          <EntitySet Name="measurments" EntityType="Self.measurments" />
+          <EntitySet Name="product_materials" EntityType="Self.product_materials" />
+          <EntitySet Name="product_types" EntityType="Self.product_types" />
+          <EntitySet Name="products" EntityType="Self.products" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_materials_material_types" Association="Self.FK_materials_material_types">
+            <End Role="material_types" EntitySet="material_types" />
+            <End Role="materials" EntitySet="materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_materials_measurments" Association="Self.FK_materials_measurments">
+            <End Role="measurments" EntitySet="measurments" />
+            <End Role="materials" EntitySet="materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_materials_materials" Association="Self.FK_product_materials_materials">
+            <End Role="materials" EntitySet="materials" />
+            <End Role="product_materials" EntitySet="product_materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_materials_products" Association="Self.FK_product_materials_products">
+            <End Role="products" EntitySet="products" />
+            <End Role="product_materials" EntitySet="product_materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_products_product_types" Association="Self.FK_products_product_types">
+            <End Role="product_types" EntitySet="product_types" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Wallpaper_FacroryModelContainer" CdmEntityContainer="Wallpaper_FacroryEntities">
+          <EntitySetMapping Name="material_types">
+            <EntityTypeMapping TypeName="Wallpaper_FacroryModel.material_types">
+              <MappingFragment StoreEntitySet="material_types">
+                <ScalarProperty Name="material_type_id" ColumnName="material_type_id" />
+                <ScalarProperty Name="material_type_name" ColumnName="material_type_name" />
+                <ScalarProperty Name="percentage_of_fail" ColumnName="percentage_of_fail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="materials">
+            <EntityTypeMapping TypeName="Wallpaper_FacroryModel.materials">
+              <MappingFragment StoreEntitySet="materials">
+                <ScalarProperty Name="material_id" ColumnName="material_id" />
+                <ScalarProperty Name="material_name" ColumnName="material_name" />
+                <ScalarProperty Name="material_type_id" ColumnName="material_type_id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="min_amount" ColumnName="min_amount" />
+                <ScalarProperty Name="amount_per_package" ColumnName="amount_per_package" />
+                <ScalarProperty Name="measurment_id" ColumnName="measurment_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="measurments">
+            <EntityTypeMapping TypeName="Wallpaper_FacroryModel.measurments">
+              <MappingFragment StoreEntitySet="measurments">
+                <ScalarProperty Name="measurment_id" ColumnName="measurment_id" />
+                <ScalarProperty Name="measurment_name" ColumnName="measurment_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product_materials">
+            <EntityTypeMapping TypeName="Wallpaper_FacroryModel.product_materials">
+              <MappingFragment StoreEntitySet="product_materials">
+                <ScalarProperty Name="product_material_id" ColumnName="product_material_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="material_id" ColumnName="material_id" />
+                <ScalarProperty Name="amount_of_material" ColumnName="amount_of_material" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product_types">
+            <EntityTypeMapping TypeName="Wallpaper_FacroryModel.product_types">
+              <MappingFragment StoreEntitySet="product_types">
+                <ScalarProperty Name="product_type_id" ColumnName="product_type_id" />
+                <ScalarProperty Name="product_type_name" ColumnName="product_type_name" />
+                <ScalarProperty Name="coeff_of_type" ColumnName="coeff_of_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="Wallpaper_FacroryModel.products">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="product_type_id" ColumnName="product_type_id" />
+                <ScalarProperty Name="name_of_product" ColumnName="name_of_product" />
+                <ScalarProperty Name="article" ColumnName="article" />
+                <ScalarProperty Name="min_price" ColumnName="min_price" />
+                <ScalarProperty Name="wide" ColumnName="wide" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Wallpaper_FacroryModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
