@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Orientation="Vertical" Grid.Column="1" Margin="0,75,0,0">
-            <TextBlock Text="Добавление нового продукта" Margin="5" Width="270" Height="15"/>
+            <TextBlock Text="Рассчитать количество материала" Margin="5" Width="270" Height="15"/>
 
             <TextBlock Text="Количество получаемой продукции" Width="270" Height="15" Margin="0,15,0,0"/>
             <TextBox x:Name="tbNeedAmount" Margin="5" Width="270" Height="25"/>

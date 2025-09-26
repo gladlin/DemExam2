@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище Wallpaper_FacroryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище Wallpaper_FactoryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="material_types">
           <Key>
             <PropertyRef Name="material_type_id" />
@@ -131,7 +131,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище Wallpaper_FacroryModelContainer">
+        <EntityContainer Name="Хранилище Wallpaper_FactoryModelContainer">
           <EntitySet Name="material_types" EntityType="Self.material_types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="materials" EntityType="Self.materials" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="measurments" EntityType="Self.measurments" Schema="dbo" store:Type="Tables" />
@@ -160,10 +160,11 @@
             <End Role="products" EntitySet="products" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Wallpaper_FacroryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Wallpaper_FactoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="material_types">
           <Key>
             <PropertyRef Name="material_type_id" />
@@ -221,7 +222,7 @@
           <Key>
             <PropertyRef Name="product_id" />
           </Key>
-          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="product_type_id" Type="Int32" Nullable="false" />
           <Property Name="name_of_product" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="article" Type="Int32" Nullable="false" />
@@ -300,7 +301,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Wallpaper_FacroryEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Wallpaper_FactoryEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="material_types" EntityType="Self.material_types" />
           <EntitySet Name="materials" EntityType="Self.materials" />
           <EntitySet Name="measurments" EntityType="Self.measurments" />
@@ -334,9 +335,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище Wallpaper_FacroryModelContainer" CdmEntityContainer="Wallpaper_FacroryEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Wallpaper_FactoryModelContainer" CdmEntityContainer="Wallpaper_FactoryEntities">
           <EntitySetMapping Name="material_types">
-            <EntityTypeMapping TypeName="Wallpaper_FacroryModel.material_types">
+            <EntityTypeMapping TypeName="Wallpaper_FactoryModel.material_types">
               <MappingFragment StoreEntitySet="material_types">
                 <ScalarProperty Name="material_type_id" ColumnName="material_type_id" />
                 <ScalarProperty Name="material_type_name" ColumnName="material_type_name" />
@@ -345,7 +346,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="materials">
-            <EntityTypeMapping TypeName="Wallpaper_FacroryModel.materials">
+            <EntityTypeMapping TypeName="Wallpaper_FactoryModel.materials">
               <MappingFragment StoreEntitySet="materials">
                 <ScalarProperty Name="material_id" ColumnName="material_id" />
                 <ScalarProperty Name="material_name" ColumnName="material_name" />
@@ -359,7 +360,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="measurments">
-            <EntityTypeMapping TypeName="Wallpaper_FacroryModel.measurments">
+            <EntityTypeMapping TypeName="Wallpaper_FactoryModel.measurments">
               <MappingFragment StoreEntitySet="measurments">
                 <ScalarProperty Name="measurment_id" ColumnName="measurment_id" />
                 <ScalarProperty Name="measurment_name" ColumnName="measurment_name" />
@@ -367,7 +368,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="product_materials">
-            <EntityTypeMapping TypeName="Wallpaper_FacroryModel.product_materials">
+            <EntityTypeMapping TypeName="Wallpaper_FactoryModel.product_materials">
               <MappingFragment StoreEntitySet="product_materials">
                 <ScalarProperty Name="product_material_id" ColumnName="product_material_id" />
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
@@ -377,7 +378,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="product_types">
-            <EntityTypeMapping TypeName="Wallpaper_FacroryModel.product_types">
+            <EntityTypeMapping TypeName="Wallpaper_FactoryModel.product_types">
               <MappingFragment StoreEntitySet="product_types">
                 <ScalarProperty Name="product_type_id" ColumnName="product_type_id" />
                 <ScalarProperty Name="product_type_name" ColumnName="product_type_name" />
@@ -386,7 +387,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="products">
-            <EntityTypeMapping TypeName="Wallpaper_FacroryModel.products">
+            <EntityTypeMapping TypeName="Wallpaper_FactoryModel.products">
               <MappingFragment StoreEntitySet="products">
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
                 <ScalarProperty Name="product_type_id" ColumnName="product_type_id" />
@@ -398,7 +399,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="Wallpaper_FacroryModel.sysdiagrams">
+            <EntityTypeMapping TypeName="Wallpaper_FactoryModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />

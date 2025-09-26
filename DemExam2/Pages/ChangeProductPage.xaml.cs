@@ -21,7 +21,7 @@ namespace DemExam2.Pages
             InitializeComponent();
 
             selectedProduct = product;
-            var db = Wallpaper_FacroryEntities.GetContext();
+            var db = Wallpaper_FactoryEntities.GetContext();
 
             //Заполнение комбобокса
             cmbProductType.ItemsSource = db.product_types.Select(x => x.product_type_name).ToList();
@@ -43,7 +43,7 @@ namespace DemExam2.Pages
                 return;
             }
 
-            var db = Wallpaper_FacroryEntities.GetContext();
+            var db = Wallpaper_FactoryEntities.GetContext();
             products product = db.products.First(x => x.product_id == selectedProduct.product_id);
 
             product.product_type_id = db.product_types.First(x => x.product_type_name == cmbProductType.SelectedItem.ToString()).product_type_id;

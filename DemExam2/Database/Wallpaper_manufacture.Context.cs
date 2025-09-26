@@ -13,20 +13,18 @@ namespace DemExam2.Database
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Wallpaper_FacroryEntities : DbContext
+    public partial class Wallpaper_FactoryEntities : DbContext
     {
-        public static Wallpaper_FacroryEntities _context;
+        public static Wallpaper_FactoryEntities _context;
 
-        public static Wallpaper_FacroryEntities GetContext()
+        public static Wallpaper_FactoryEntities GetContext()
         {
             if (_context == null)
-                _context = new Wallpaper_FacroryEntities();
+                _context = new Wallpaper_FactoryEntities();
             return _context;
         }
-
-
-        public Wallpaper_FacroryEntities()
-            : base("name=Wallpaper_FacroryEntities")
+        public Wallpaper_FactoryEntities()
+            : base("name=Wallpaper_FactoryEntities")
         {
         }
     

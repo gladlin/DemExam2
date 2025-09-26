@@ -25,7 +25,7 @@ namespace DemExam2.Pages
         public AddProductPage()
         {
             InitializeComponent();
-            var db = Wallpaper_FacroryEntities.GetContext();
+            var db = Wallpaper_FactoryEntities.GetContext();
             cmbProductType.ItemsSource = db.product_types.Select(x => x.product_type_name).ToList();
         }
 
@@ -37,7 +37,7 @@ namespace DemExam2.Pages
                 return;
             }
 
-            var db = Wallpaper_FacroryEntities.GetContext();
+            var db = Wallpaper_FactoryEntities.GetContext();
             products product = new products();
             product.product_type_id = db.product_types.First(x => x.product_type_name == cmbProductType.SelectedItem.ToString()).product_type_id;
             product.name_of_product = tbProductName.Text;

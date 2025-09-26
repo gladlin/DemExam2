@@ -15,7 +15,7 @@ namespace DemExam2.Pages
         public CountProducts(products product)
         {
             InitializeComponent();
-            var db = Wallpaper_FacroryEntities.GetContext();
+            var db = Wallpaper_FactoryEntities.GetContext();
 
             current_product = product;
 
@@ -44,7 +44,7 @@ namespace DemExam2.Pages
                 return;
             }
 
-            var db = Wallpaper_FacroryEntities.GetContext();
+            var db = Wallpaper_FactoryEntities.GetContext();
 
             var materialId = (int)cmbMaterialName.SelectedValue;
             var current_material = db.materials.First(x => x.material_id == materialId);
@@ -57,7 +57,7 @@ namespace DemExam2.Pages
 
         private int Count_Materials(int productId, int materialId, int need_product, double amount_per_product)
         {
-            var db = Wallpaper_FacroryEntities.GetContext();
+            var db = Wallpaper_FactoryEntities.GetContext();
 
             var current_material = db.materials.First(x => x.material_id == materialId);
             double need_material = need_product * amount_per_product;

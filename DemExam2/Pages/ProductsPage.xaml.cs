@@ -55,7 +55,7 @@ namespace DemExam2.Pages
             // переход на страницу изменения продукта 
             if (LViewProduct.SelectedItem is ProductStruct selectedItem)
             {
-                Wallpaper_FacroryEntities db = Wallpaper_FacroryEntities.GetContext();
+                Wallpaper_FactoryEntities db = Wallpaper_FactoryEntities.GetContext();
                 var product = db.products.First(x => x.article == selectedItem.Articule);
                 NavigationService.Navigate(new ChangeProductPage(product));
             }
@@ -68,7 +68,7 @@ namespace DemExam2.Pages
             // переход на страницу подсчета количества материала
             if (LViewProduct.SelectedItem is ProductStruct selectedItem)
             {
-                Wallpaper_FacroryEntities db = Wallpaper_FacroryEntities.GetContext();
+                Wallpaper_FactoryEntities db = Wallpaper_FactoryEntities.GetContext();
                 var product = db.products.First(x => x.article == selectedItem.Articule);
                 NavigationService.Navigate(new CountProducts(product));
             }
@@ -93,7 +93,7 @@ namespace DemExam2.Pages
         /// <param name="partners">Массив всех работников в бд</param>
         private void AllProducts()
         {
-            Wallpaper_FacroryEntities db = Wallpaper_FacroryEntities.GetContext();
+            Wallpaper_FactoryEntities db = Wallpaper_FactoryEntities.GetContext();
 
             var products = db.products.ToList();
             foreach (var item in products) {
@@ -126,14 +126,14 @@ namespace DemExam2.Pages
 
         private void LViewProduct_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            /*if (LViewProduct.SelectedItem is ProductStruct selectedItem)
+            if (LViewProduct.SelectedItem is ProductStruct selectedItem)
             {
-                var db = Wallpaper_FacroryEntities.GetContext();
-                var partner = db.Partners.First(x => x.partner_id == selectedItem.Id_partner);
-                NavigationService.Navigate(new ChangePartnerPage(partner));
+                Wallpaper_FactoryEntities db = Wallpaper_FactoryEntities.GetContext();
+                var product = db.products.First(x => x.article == selectedItem.Articule);
+                NavigationService.Navigate(new ChangeProductPage(product));
             }
             else
-                return;*/
+                return;
         }
     }
 }

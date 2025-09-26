@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Entity.Design" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -177,21 +178,24 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Icon.ico" />
+    <Resource Include="Resources\Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
     <Content Include="Database\Wallpaper_manufacture.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Wallpaper_manufacture.Context.cs</LastGenOutput>
       <DependentUpon>Wallpaper_manufacture.edmx</DependentUpon>
+      <LastGenOutput>Wallpaper_manufacture.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Database\Wallpaper_manufacture.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Wallpaper_manufacture.edmx</DependentUpon>
       <LastGenOutput>Wallpaper_manufacture.cs</LastGenOutput>
     </Content>
-    <Resource Include="Resources\Icon.ico" />
-    <Resource Include="Resources\Icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "C:\Users\alindos\source\repos\DemExam2\DemExam2\Database\Wallpaper_manufacture.edmx" включено. 
+﻿// Создание кода T4 для модели "C:\Users\Alina\Source\Repos\DemExam2\DemExam2\Database\Wallpaper_manufacture.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.

@@ -20,9 +20,8 @@ namespace DemExam2.Database
         {
             this.product_materials = new HashSet<product_materials>();
         }
-
+    
         public int product_id { get; set; }
-
         [Required(ErrorMessage = "Тип продукта должен быть указан")]
         [Range(1, 4)]
         public int product_type_id { get; set; }
